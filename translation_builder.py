@@ -302,7 +302,9 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
             contexts.setdefault(item["context"], []).append(item)
 
         for lang in languages:
-            ts_path = os.path.join(i18n_folder, f"translation_builder_{lang}.ts")
+            plugin_name = os.path.basename(os.path.normpath(plugin_folder))
+            ts_path = os.path.join(i18n_folder, f"{plugin_name}_{lang}.ts")
+
             self.log(f"Generazione: {ts_path}")
             ts = ET.Element("TS", version="2.1", language=f"{lang}_{lang.upper()}")
 
