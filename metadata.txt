@@ -1,0 +1,37 @@
+[general]
+name=TranslationBuilder
+about=A TS/QM generator for QGIS plugins that works without relying on lupdate.
+category=Plugins
+hasProcessingProvider=True
+description=Scans a QGIS plugin and extracts all translatable strings from Python and UI files, generating TS and QM translation files without using lupdate. Includes automatic detection of lrelease, multi‑platform support, and integrated tools to open Qt Linguist directly from the plugin.
+icon=resources/images/icon.png
+tags=plugin,plugins,template,builder
+
+# credits and contact
+author=Dr. Geol. Faustino Cetraro
+email=geol-faustino@libero.it
+homepage=https://oslandia.gitlab.io/qgis/qgis-plugin-templater-gui/
+repository=https://gitlab.com/oslandia/qgis/qgis-plugin-templater-gui
+tracker=https://gitlab.com/oslandia/qgis/qgis-plugin-templater-gui/-/issues/
+
+# QGIS context
+deprecated=False
+experimental=False
+plugin_dependencies=qpip==1.1.1
+qgisMinimumVersion=4.00
+qgisMaximumVersion=4.99
+supportsQt6=True
+
+# versioning
+version=1.0
+changelog=
+ Version 0.1.0:
+ - First release
+ - Added processing to run QGIS Plugin Templater with all options. !2
+ – Handled cookiecutter dependency with qpip. !3
+ - Added a menu and toolbar action to open the processing UI. !4
+
+ Version 0.1.1:
+ - fix: use direct ZIP URL to avoid missing Git dependency error !8
+
+
