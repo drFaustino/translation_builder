@@ -60,19 +60,20 @@ It provides a simple, cross‑platform workflow for managing translations in QGI
 
 ---
 
-## 🧩 Plugin Metadata
+## 🔧 Installing Qt Tools (linguist, lrelease, lupdate) via aqtinstall
+TranslationBuilder requires the Qt translation tools (lrelease, lupdate, and optionally linguist).
+These tools are normally included in full Qt installations, but you can install only the necessary components using aqtinstall, a lightweight Python-based installer.
 
-name=TranslationBuilder
-about=A TS/QM generator for QGIS plugins that works without relying on lupdate.
-category=Plugins
-hasProcessingProvider=True
-description=Scans a QGIS plugin and extracts all translatable strings from Python and UI files, generating TS and QM translation files without using lupdate. Includes automatic lrelease detection, multi‑platform support, and integrated Qt Linguist launching.
-deprecated=False
-experimental=False
-plugin_dependencies=qpip==1.1.1
-qgisMinimumVersion=4.00
-qgisMaximumVersion=4.99
-supportsQt6=True
+1. Install aqtinstall
+
+pip install aqtinstall
+
+2. Install Qt 6.6.0 Tools (cross‑platform)
+Use the command appropriate for your operating system.
+
+* **Windows (MinGW 64‑bit)**: aqt install-qt windows desktop 6.6.0 win64_mingw -m qttools
+* **macOS (Clang)**: aqt install-qt mac desktop 6.6.0 clang_64 -m qttools
+* **Linux (GCC)**: aqt install-qt linux desktop 6.6.0 gcc_64 -m qttools
 
 ---
 
