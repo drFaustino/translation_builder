@@ -1,6 +1,6 @@
 import os
 import re
-import xml.etree.ElementTree as ET
+from defusedxml import ElementTree as ET
 
 from qgis.PyQt.QtWidgets import (
     QAction, QDialog, QFileDialog, QMessageBox
@@ -64,7 +64,6 @@ class TranslationBuilder:
         )
 
         self.action.triggered.connect(self.run)
-
         self.iface.addPluginToMenu(self.menu, self.action)
         self.iface.addToolBarIcon(self.action)
 
@@ -82,7 +81,6 @@ class TranslationBuilder:
         self.dlg.show()
         self.dlg.raise_()
         self.dlg.activateWindow()
-
 
 # ---------------------------------------------------------
 # Dialog principale
@@ -229,7 +227,6 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
 
         class_el = root.find("class")
         context = class_el.text if class_el is not None else os.path.splitext(os.path.basename(full_path))[0]
-
         strings = []
 
         for string_el in root.findall(".//string"):
@@ -259,7 +256,7 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
     def generate_ts(self):
         plugin_folder = self.txtPluginFolder.text().strip()
         i18n_folder = self.txtI18nFolder.text().strip()
-        languages = [l.strip() for l in self.txtLanguages.text().split(",") if l.strip()]
+        languages = [lang.strip() for lang in self.txtLanguages.text().split(",") if lang.strip()]
 
         if not os.path.isdir(plugin_folder):
             QMessageBox.warning(self, "Errore", "Cartella plugin non valida.")
@@ -276,7 +273,6 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
 
         py_strings = self.scan_files(plugin_folder)
         ui_strings = self.scan_ui_strings(plugin_folder)
-
         seen = set((s["context"], s["source"]) for s in py_strings)
         merged = py_strings.copy()
 
@@ -303,7 +299,6 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
         for lang in languages:
             ts_path = os.path.join(i18n_folder, f"translation_builder_{lang}.ts")
             self.log(f"Generazione: {ts_path}")
-
             ts = ET.Element("TS", version="2.1", language=f"{lang}_{lang.upper()}")
 
             for ctx, items in contexts.items():
@@ -313,10 +308,8 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
 
                 for item in items:
                     message_el = ET.SubElement(context_el, "message")
-
                     location_el = ET.SubElement(message_el, "location")
                     location_el.set("filename", item["filename"])
-
                     source_el = ET.SubElement(message_el, "source")
                     source_el.text = item["source"]
 
@@ -372,16 +365,13 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
         for ts in ts_files:
             ts_path = os.path.abspath(os.path.join(i18n_folder, ts)).replace("\\", "/")
             qm_path = os.path.abspath(os.path.splitext(ts_path)[0] + ".qm").replace("\\", "/")
-
             self.log(f"Compilazione: {qm_path}")
-
             proc = QProcess()
             proc.setWorkingDirectory(i18n_folder)
 
             # Avvio multipiattaforma
             proc.start(LRELEASE, [ts_path, "-qm", qm_path])
             proc.waitForFinished()
-
             exit_code = proc.exitCode()
             stderr = bytes(proc.readAllStandardError()).decode("utf-8", errors="ignore")
 
@@ -407,8 +397,9 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
             try:
                 with open(cfg, "r", encoding="utf-8") as f:
                     return f.read().strip()
-            except:
+            except Exception:
                 pass
+
         return ""
 
     def save_lrelease_path(self, path):
@@ -416,7 +407,7 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
         try:
             with open(cfg, "w", encoding="utf-8") as f:
                 f.write(path)
-        except:
+        except Exception:
             pass
 
     def autodetect_lrelease(self):
@@ -467,8 +458,9 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
             try:
                 with open(cfg, "r", encoding="utf-8") as f:
                     return f.read().strip()
-            except:
+            except Exception:
                 pass
+
         return ""
 
     def save_linguist_path(self, path):
@@ -476,7 +468,7 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
         try:
             with open(cfg, "w", encoding="utf-8") as f:
                 f.write(path)
-        except:
+        except Exception:
             pass
 
     def autodetect_linguist(self):
@@ -535,4 +527,3 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
 
         proc = QProcess()
         proc.startDetached(linguist)
-
