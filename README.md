@@ -76,22 +76,6 @@ supportsQt6=True
 
 ---
 
-## 🔧 Installing Qt Tools (linguist, lrelease, lupdate) via aqtinstall
-TranslationBuilder requires the Qt translation tools (lrelease, lupdate, and optionally linguist).
-These tools are normally included in full Qt installations, but you can install only the necessary components using aqtinstall, a lightweight Python-based installer.
-
-## 1. Install aqtinstall
-pip install aqtinstall
-
-## 2. Install Qt 6.6.0 Tools (cross‑platform)
-Use the command appropriate for your operating system.
-
-* **Windows (MinGW 64‑bit)**: aqt install-qt windows desktop 6.6.0 win64_mingw -m qttools
-* **macOS (Clang)**: aqt install-qt mac desktop 6.6.0 clang_64 -m qttools
-* **Linux (GCC)**: aqt install-qt linux desktop 6.6.0 gcc_64 -m qttools
-
----
-
 ## 📄 License
 
 This project is licensed under the **GNU General Public License v3.0 (GPL‑3.0)**.  

@@ -1,6 +1,11 @@
 import os
 import re
-from defusedxml import ElementTree as ET
+# Parsing sicuro
+from defusedxml.ElementTree import parse as safe_parse
+
+# Creazione XML (sicura perché non coinvolge input esterno)
+import xml.etree.ElementTree as ET
+
 
 from qgis.PyQt.QtWidgets import (
     QAction, QDialog, QFileDialog, QMessageBox
@@ -220,7 +225,7 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
 
     def extract_strings_from_ui(self, full_path, rel_path):
         try:
-            tree = ET.parse(full_path)
+            tree = safe_parse(full_path)
             root = tree.getroot()
         except Exception:
             return []
