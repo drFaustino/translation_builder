@@ -107,6 +107,10 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
         self.pattern = re.compile(
             r'QCoreApplication\.translate\(\s*"([^"]+)"\s*,\s*"([^"]+)"\s*\)'
         )
+        
+        self.pattern_tr = re.compile(
+            r'\btr\(\s*"([^"]+)"\s*\)'
+        )
 
         # Connessioni UI
         self.btnSelectPlugin.clicked.connect(self.select_plugin_folder)
@@ -187,19 +191,29 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
                     except Exception:
                         continue
 
+                    # 1. QCoreApplication.translate(...)
                     for ctx, msg in self.pattern.findall(content):
                         key = (ctx, msg)
-                        if key in seen:
-                            continue
-                        seen.add(key)
-                        strings.append(
-                            {
+                        if key not in seen:
+                            seen.add(key)
+                            strings.append({
                                 "context": ctx,
                                 "source": msg,
                                 "filename": rel_path.replace("\\", "/"),
                                 "comment": None
-                            }
-                        )
+                            })
+
+                    # 2. tr("...")
+                    for msg in self.pattern_tr.findall(content):
+                        key = ("default", msg)  # oppure il nome del plugin
+                        if key not in seen:
+                            seen.add(key)
+                            strings.append({
+                                "context": "default",
+                                "source": msg,
+                                "filename": rel_path.replace("\\", "/"),
+                                "comment": None
+                            })
 
         return strings
 

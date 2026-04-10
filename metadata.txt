@@ -23,8 +23,15 @@ qgisMaximumVersion=4.99
 supportsQt6=True
 
 # versioning
-version=1.0
+version=1.1
 changelog=
+  Version 1.1:
+    - Added support for tr() extraction in Python files.
+    - Improved regex engine for translation detection.
+    - Added automatic recognition of QObject.tr() and self.tr().
+    - Updated metadata to declare translation support.
+    - Minor UI improvements and stability fixes.
+
   Version 1.0:
     - Initial public release.
     - Added TS/QM generation without lupdate.

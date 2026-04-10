@@ -6,6 +6,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.0] - 2026-04-10
+### Added
+- Added full support for extracting strings marked with `tr()`, `self.tr()`, and `QObject.tr()`.
+- Added secondary regex engine to detect translation calls beyond `QCoreApplication.translate`.
+- Added metadata flag `hasTranslations=True` for QGIS automatic translation loading.
+- Added improved handling of translation contexts for Python and UI files.
+- Added compatibility with plugins using QObject‑based translation patterns.
+
+### Improved
+- Enhanced Python scanner to avoid missing strings in nested or multiline calls.
+- Improved UI responsiveness and minor layout refinements.
+- Better cross‑platform path normalization for Windows/macOS/Linux.
+
+### Fixed
+- Fixed missing detection of `tr()` strings in Python files.
+- Fixed duplicate context merging when scanning `.ui` files.
+- Fixed edge cases where `.qm` files were not generated despite successful `lrelease` execution.
+
+---
+
 ## [1.0.0] - 2026-03-27
 ### Added
 - Initial public release of **TranslationBuilder**.
