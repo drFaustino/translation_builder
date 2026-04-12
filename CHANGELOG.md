@@ -6,6 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## **1.2 — Removal of defusedxml and QGIS 4.0.1 Compatibility**
+**Release date:** 2026‑04‑12
+
+### Improvements
+- Removed the dependency on `defusedxml` (no longer available in QGIS 4.0.1 with Python 3.12).
+- Replaced XML parsing with `xml.etree.ElementTree` in safe mode.
+- Improved compatibility with:
+  - QGIS 4.0.1+
+  - Qt6
+  - Python 3.12
+- Updated plugin metadata and tags.
+- General code cleanup and stability enhancements.
+
+---
+
 ## [1.1.0] - 2026-04-10
 ### Added
 - Added full support for extracting strings marked with `tr()`, `self.tr()`, and `QObject.tr()`.

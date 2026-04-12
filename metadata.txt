@@ -1,30 +1,33 @@
 [general]
 name=TranslationBuilder
-about=A TS/QM generator for QGIS plugins that works without relying on lupdate.
-category=Plugins
-hasProcessingProvider=True
-description=Scans a QGIS plugin and extracts all translatable strings from Python and UI files, generating TS and QM translation files without using lupdate. Includes automatic detection of lrelease, multi-platform support, and integrated tools to open Qt Linguist directly from the plugin.
-icon=resources/images/icon.png
-tags=plugin,plugins,template,builder
-
-# credits and contact
+qgisMinimumVersion=4.0
+qgisMaximumVersion=4.99
+version=1.2
 author=Dr. Geol. Faustino Cetraro
 email=geol-faustino@libero.it
 homepage=https://github.com/drFaustino/translation_builder
 repository=https://github.com/drFaustino/translation_builder
 tracker=https://github.com/drFaustino/translation_builder
+icon=resources/images/icon.png
+category=Plugins
+tags=translation,ts,qm,internationalization,localization,qt6,qgis4,plugin-builder
+description=Scans a QGIS plugin and extracts all translatable strings from Python and UI files, generating TS and QM translation files without using lupdate. Includes automatic detection of lrelease, multi-platform support, and integrated Qt Linguist launcher.
+about=A modern TS/QM generator for QGIS 4 plugins. Extracts translations from Python and UI files, builds TS/QM without lupdate, detects lrelease automatically, and integrates Qt Linguist.
 
-# QGIS context
-deprecated=False
+# QGIS integration
 experimental=False
-plugin_dependencies=qpip==1.1.1
-qgisMinimumVersion=4.00
-qgisMaximumVersion=4.99
-supportsQt6=True
+deprecated=False
+hasProcessingProvider=False
+plugin_dependencies=
 
-# versioning
-version=1.1
+# Version history
 changelog=
+  Version 1.2:
+    - Removed dependency on defusedxml (no longer available in QGIS 4.0.1).
+    - Switched to safe XML parsing via xml.etree.ElementTree.
+    - Improved compatibility with Python 3.12 and Qt6.
+    - Updated metadata and tags for QGIS 4 plugin repository.
+
   Version 1.1:
     - Added support for tr() extraction in Python files.
     - Improved regex engine for translation detection.
@@ -38,7 +41,6 @@ changelog=
     - Added automatic lrelease detection (Windows/macOS/Linux).
     - Added integrated Qt Linguist launcher.
     - Added preview and log panels.
-    - Added secure XML parsing via defusedxml.
     - Improved UI layout for QGIS 4 and Qt6.
 
   Version 0.1.1:
