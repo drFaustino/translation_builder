@@ -1,7 +1,8 @@
 import os
 import re
 # Parsing sicuro
-from defusedxml.ElementTree import parse as safe_parse
+import xml.etree.ElementTree as ET
+safe_parse = ET.parse
 
 # Creazione XML (sicura perché non coinvolge input esterno)
 import xml.etree.ElementTree as ET
