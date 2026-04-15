@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## **1.3 — Add link to download lrelease**
+**Release date:** 2026‑04‑14
+- Add link to download lrelease
+- implemented multistring for the translate languages
+
+---
 
 ## **1.2 — Removal of defusedxml and QGIS 4.0.1 Compatibility**
 **Release date:** 2026‑04‑12

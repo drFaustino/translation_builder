@@ -2,7 +2,7 @@
 name=TranslationBuilder
 qgisMinimumVersion=4.0
 qgisMaximumVersion=4.99
-version=1.2
+version=1.4
 author=Dr. Geol. Faustino Cetraro
 email=geol-faustino@libero.it
 homepage=https://github.com/drFaustino/translation_builder
@@ -18,10 +18,15 @@ about=A modern TS/QM generator for QGIS 4 plugins. Extracts translations from Py
 experimental=False
 deprecated=False
 hasProcessingProvider=False
-plugin_dependencies=
 
 # Version history
 changelog=
+  Version 1.4:
+    - Add languages en, it.
+
+  Version 1.3:
+    - Add link to download lrelease.
+
   Version 1.2:
     - Removed dependency on defusedxml (no longer available in QGIS 4.0.1).
     - Switched to safe XML parsing via xml.etree.ElementTree.
