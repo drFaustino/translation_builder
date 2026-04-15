@@ -95,3 +95,9 @@ Scientific communicator, GIS specialist, and editorial architect.
 
 Contributions, suggestions, and improvements are welcome.  
 Feel free to open issues or pull requests.
+
+---
+
+## Interface
+
+<img width="693" height="730" alt="img1" src="https://github.com/user-attachments/assets/00a98f08-5c23-4aeb-84b3-9b61e05fa2ec" />
