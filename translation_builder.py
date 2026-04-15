@@ -7,6 +7,7 @@ safe_parse = ET.parse
 # Creazione XML (sicura perché non coinvolge input esterno)
 import xml.etree.ElementTree as ET
 
+from qgis.PyQt.QtCore import Qt
 
 from qgis.PyQt.QtWidgets import (
     QAction, QDialog, QFileDialog, QMessageBox
@@ -26,7 +27,6 @@ FORM_CLASS, _ = uic.loadUiType(
     os.path.join(os.path.dirname(__file__), "ui", "translation_builder_dialog.ui")
 )
 
-
 # ---------------------------------------------------------
 # Plugin principale
 # ---------------------------------------------------------
@@ -35,7 +35,7 @@ class TranslationBuilder:
     def __init__(self, iface):
         self.iface = iface
         self.plugin_dir = os.path.dirname(__file__)
-
+    
         # Caricamento traduzioni
         locale = QSettings().value("locale/userLocale", "it")[0:2]
         locale_path = os.path.join(
@@ -98,15 +98,21 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
         self.iface = iface
         self.setupUi(self)
 
+        # Abilita link cliccabili nella QLabel (Qt6 / QGIS4)
+        self.labelLink.setTextFormat(Qt.TextFormat.RichText)
+        self.labelLink.setTextInteractionFlags(Qt.TextInteractionFlag.TextBrowserInteraction)
+        self.labelLink.setOpenExternalLinks(True)
+
         # Carica percorso salvato di lrelease.exe
         settings = QSettings()
         self.txtLreleasePath.setText(
             settings.value("translation_builder/lrelease_path", "")
         )
-
+ 
         # Regex per QCoreApplication.translate
         self.pattern = re.compile(
-            r'QCoreApplication\.translate\(\s*"([^"]+)"\s*,\s*"([^"]+)"\s*\)'
+            r'QCoreApplication\.translate\(\s*"([^"]+)"\s*,\s*("""[\s\S]*?"""|"[\s\S]*?")\s*\)',
+            re.MULTILINE
         )
         
         self.pattern_tr = re.compile(
@@ -175,7 +181,6 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
     # ---------------------------------------------------------
     # Scansione file .py
     # ---------------------------------------------------------
-
     def scan_files(self, root_folder):
         strings = []
         seen = set()
@@ -192,8 +197,28 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
                     except Exception:
                         continue
 
-                    # 1. QCoreApplication.translate(...)
-                    for ctx, msg in self.pattern.findall(content):
+                    # -----------------------------------------------------
+                    # 1. Unisci stringhe concatenate "..." "..."
+                    # -----------------------------------------------------
+                    # Ripeti finché ci sono concatenazioni
+                    while True:
+                        new_content = re.sub(
+                            r'"([^"]*)"\s+"([^"]*)"',
+                            r'"\1\2"',
+                            content
+                        )
+                        if new_content == content:
+                            break
+                        content = new_content
+
+                    # -----------------------------------------------------
+                    # 2. Cerca QCoreApplication.translate multilinea
+                    # -----------------------------------------------------
+                    for ctx, msg in re.findall(
+                        r'QCoreApplication\.translate\(\s*"([^"]+)"\s*,\s*"([\s\S]*?)"\s*\)',
+                        content,
+                        flags=re.MULTILINE
+                    ):
                         key = (ctx, msg)
                         if key not in seen:
                             seen.add(key)
@@ -204,9 +229,15 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
                                 "comment": None
                             })
 
-                    # 2. tr("...")
-                    for msg in self.pattern_tr.findall(content):
-                        key = ("default", msg)  # oppure il nome del plugin
+                    # -----------------------------------------------------
+                    # 3. Cerca tr("...") anche multilinea
+                    # -----------------------------------------------------
+                    for msg in re.findall(
+                        r'\btr\(\s*"([\s\S]*?)"\s*\)',
+                        content,
+                        flags=re.MULTILINE
+                    ):
+                        key = ("default", msg)
                         if key not in seen:
                             seen.add(key)
                             strings.append({
@@ -217,6 +248,7 @@ class TranslationBuilderDialog(QDialog, FORM_CLASS):
                             })
 
         return strings
+
 
     # ---------------------------------------------------------
     # Estrazione stringhe dai file .ui
