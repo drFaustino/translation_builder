@@ -1,10 +1,10 @@
-#TranslationBuilder
+# TranslationBuilder
 
 TranslationBuilder is a QGIS plugin that scans a plugin's Python source code and Qt Designer UI files, extracts translatable strings, and generates .ts and .qm translation files without using lupdate.
 
 It provides a simple, cross-platform workflow for managing translations during QGIS plugin development.
 
-✨ Features
+## ✨ Features
 Extracts translatable strings from:
 Python files using QCoreApplication.translate(...)
 tr(...)
@@ -43,7 +43,7 @@ Background worker using QThread.
 QGIS remains responsive during scanning, TS generation, model installation, translation and QM compilation.
 Compatible with QGIS 4.x and Qt6.
 
-⚡ Responsive and fail-safe workflow
+## ⚡ Responsive and fail-safe workflow
 
 TranslationBuilder performs heavy operations in a background worker.
 
@@ -67,7 +67,7 @@ Translation produces an error → affected messages remain unfinished.
 
 This makes automatic translation an optional convenience rather than a requirement for the plugin.
 
-⚙️ Requirements
+## ⚙️ Requirements
 Required
 QGIS 4.0 or later
 Qt6
@@ -79,7 +79,7 @@ Argos Translate for local automatic translation
 
 Argos Translate is not required to generate TS files.
 
-📦 Installation
+## 📦 Installation
 Download the plugin or clone the repository.
 Copy the translation_builder folder into your QGIS plugins directory.
 
@@ -97,20 +97,20 @@ Linux
 Restart QGIS.
 Open the QGIS Plugin Manager.
 Enable TranslationBuilder.
-🚀 Usage
+
+## 🚀 Usage
 Open TranslationBuilder from the QGIS toolbar or plugin menu.
 Select the QGIS plugin folder.
 Select or create the i18n folder.
 Enter the languages separated by commas.
 
 For example:
-
 it, en, fr, de
 
 The first language is the source language: it
 All subsequent languages are target languages:en, fr, de
 
-##Click Generate TS.
+### Click Generate TS.
 
 TranslationBuilder scans the Python and .ui files and creates the TS files first.
 
@@ -120,7 +120,7 @@ Review and correct the translations using Qt Linguist.
 
 Click Generate QM to compile the TS files into QM files.
 
-🈯 Automatic translation with Argos Translate
+## 🈯 Automatic translation with Argos Translate
 
 TranslationBuilder optionally supports Argos Translate for local automatic translation.
 
@@ -135,16 +135,15 @@ Open the Python/QGIS terminal and install:
 python -m pip install argostranslate
 
 
-##Alternatively:
+## Alternatively:
 
 pip install argostranslate
-
 
 Make sure the package is installed in the Python environment used by QGIS.
 
 After installation, restart QGIS and use the Check Argos button in TranslationBuilder.
 
-🌍 Installing Argos language models
+## 🌍 Installing Argos language models
 
 Installing the Python package alone is not enough.
 
@@ -160,7 +159,7 @@ Internet access is therefore required only when downloading/updating models.
 
 Once the models are installed, translation can be performed locally.
 
-🔒 No API key required
+## 🔒 No API key required
 
 Unlike cloud translation services, the Argos workflow does not require:
 
@@ -172,7 +171,7 @@ an external translation endpoint.
 
 The actual translation is performed locally by Argos Translate.
 
-🛡️ Automatic translation is optional
+## 🛡️ Automatic translation is optional
 
 Argos Translate is deliberately not part of the critical TS-generation process.
 
@@ -198,7 +197,7 @@ Messages that cannot be automatically translated remain marked as:
 
 They can then be translated manually using Qt Linguist.
 
-🧩 Translation wrappers
+## 🧩 Translation wrappers
 
 TranslationBuilder detects common QGIS/Qt translation patterns, including custom wrappers.
 
@@ -239,14 +238,13 @@ MyDialog
 
 as its translation context.
 
-🌐 Multiple languages
+## 🌐 Multiple languages
 
 The language field supports multiple languages.
 
 Example:
 
 it, en, fr, de, es
-
 
 TranslationBuilder interprets this as:
 
@@ -265,7 +263,7 @@ plugin_fr.ts
 plugin_de.ts
 plugin_es.ts
 
-🛠️ Installing Qt translation tools
+## 🛠️ Installing Qt translation tools
 
 TranslationBuilder uses lrelease to compile .ts files into .qm files.
 
@@ -275,7 +273,8 @@ The Qt translation tools are normally included with a full Qt installation.
 
 If necessary, they can also be installed using aqtinstall.
 
-Install aqtinstall
+### Install aqtinstall
+
 pip install aqtinstall
 
 Windows
@@ -296,7 +295,7 @@ linguist
 
 TranslationBuilder does not require lupdate.
 
-📝 Recommended workflow
+## 📝 Recommended workflow
 
 For best results:
 
@@ -322,19 +321,19 @@ For best results:
 Machine translations should always be reviewed before publishing.
 
 
-📄 License
+## 📄 License
 
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0).
 
 See the LICENSE file for details.
 
-👤 Author
+## 👤 Author
 
 Faustino Cetraro
 
 Scientific communicator, GIS specialist, and editorial architect.
 
-🤝 Contributions
+## 🤝 Contributions
 
 Contributions, suggestions and improvements are welcome.
 
