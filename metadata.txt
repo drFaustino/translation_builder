@@ -1,44 +1,19 @@
 [general]
 name=TranslationBuilder
-about=A TS/QM generator for QGIS plugins that works without relying on lupdate.
-category=Plugins
-hasProcessingProvider=True
-description=Scans a QGIS plugin and extracts all translatable strings from Python and UI files, generating TS and QM translation files without using lupdate. Includes automatic detection of lrelease, multi-platform support, and integrated tools to open Qt Linguist directly from the plugin.
-icon=resources/images/icon.png
-tags=plugin,plugins,template,builder
-
-# credits and contact
+qgisMinimumVersion=4.0
+qgisMaximumVersion=4.99
+version=1.5
 author=Dr. Geol. Faustino Cetraro
 email=geol-faustino@libero.it
 homepage=https://github.com/drFaustino/translation_builder
 repository=https://github.com/drFaustino/translation_builder
 tracker=https://github.com/drFaustino/translation_builder
+icon=resources/images/icon.png
+category=Plugins
+tags=translation,ts,qm,internationalization,localization,qt6,qgis4,plugin-builder,argostranslate
+description=Scans QGIS plugins and extracts translatable strings from Python and UI files, generates TS and QM files without lupdate, supports multiple languages, optional local automatic translation with Argos Translate, automatic lrelease detection and Qt Linguist integration.
+about=TranslationBuilder is a QGIS 4 plugin for generating Qt TS and QM translation files. It extracts translatable strings from Python and UI files, supports tr(), self.tr(), _tr() and self._tr() wrappers, detects translation contexts automatically, supports multiple target languages, and optionally performs local automatic translation using Argos Translate. Argos Translate is optional and TS generation remains available without it.
 
-# QGIS context
-deprecated=False
 experimental=False
-plugin_dependencies=qpip==1.1.1
-qgisMinimumVersion=4.00
-qgisMaximumVersion=4.99
-supportsQt6=True
-
-# versioning
-version=1.0
-changelog=
-  Version 1.0:
-    - Initial public release.
-    - Added TS/QM generation without lupdate.
-    - Added automatic lrelease detection (Windows/macOS/Linux).
-    - Added integrated Qt Linguist launcher.
-    - Added preview and log panels.
-    - Added secure XML parsing via defusedxml.
-    - Improved UI layout for QGIS 4 and Qt6.
-
-  Version 0.1.1:
-    - Fix: use direct ZIP URL to avoid missing Git dependency error.
-
-  Version 0.1.0:
-    - First internal prototype.
-    - Added processing to run QGIS Plugin Templater with all options.
-    - Handled cookiecutter dependency with qpip.
-    - Added menu and toolbar action to open the processing UI.
+deprecated=False
+hasProcessingProvider=False

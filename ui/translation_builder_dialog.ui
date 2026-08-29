@@ -6,42 +6,37 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>690</width>
-    <height>698</height>
+    <width>1022</width>
+    <height>636</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Translation Builder</string>
   </property>
-  <layout class="QVBoxLayout" name="mainLayout">
-   <property name="leftMargin">
-    <number>6</number>
-   </property>
-   <property name="topMargin">
-    <number>6</number>
-   </property>
-   <property name="rightMargin">
-    <number>6</number>
-   </property>
-   <property name="bottomMargin">
-    <number>6</number>
-   </property>
-   <item>
-    <layout class="QFormLayout" name="formLayout">
-     <property name="fieldGrowthPolicy">
-      <enum>QFormLayout::FieldGrowthPolicy::ExpandingFieldsGrow</enum>
-     </property>
-     <item row="0" column="0">
+  <layout class="QGridLayout" name="gridLayout_3">
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
       <widget class="QLabel" name="labelPlugin">
        <property name="text">
-        <string>Cartella plugin:</string>
+        <string>Plugin folder:</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <layout class="QHBoxLayout" name="layoutPlugin">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QLineEdit" name="txtPluginFolder"/>
+        <widget class="QLineEdit" name="txtPluginFolder">
+         <property name="placeholderText">
+          <string>Plugin folder</string>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QPushButton" name="btnSelectPlugin">
@@ -52,17 +47,21 @@
        </item>
       </layout>
      </item>
-     <item row="1" column="0">
+     <item>
       <widget class="QLabel" name="labelI18n">
        <property name="text">
-        <string>Cartella i18n:</string>
+        <string>i18n folder:</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <layout class="QHBoxLayout" name="layoutI18n">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <widget class="QLineEdit" name="txtI18nFolder"/>
+        <widget class="QLineEdit" name="txtI18nFolder">
+         <property name="placeholderText">
+          <string>i18n folder for TS/QM files</string>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QPushButton" name="btnSelectI18n">
@@ -73,31 +72,42 @@
        </item>
       </layout>
      </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="labelLang">
-       <property name="text">
-        <string>Lingue (es. it, en, es, fr):</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="txtLanguages">
-       <property name="placeholderText">
-        <string>it, en</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="labelPath">
-       <property name="text">
-        <string>Percorso lrelease:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <layout class="QHBoxLayout" name="layoutLrelease">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
-        <widget class="QLineEdit" name="txtLreleasePath"/>
+        <widget class="QLabel" name="labelLang">
+         <property name="text">
+          <string>Languages (first = source, others = automatic translation):</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txtLanguages">
+         <property name="text">
+          <string>it, en</string>
+         </property>
+         <property name="placeholderText">
+          <string>it, en, fr, de</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QLabel" name="labelPath">
+         <property name="text">
+          <string>lrelease file path:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txtLreleasePath">
+         <property name="placeholderText">
+          <string>Path to lrelease if not installed</string>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QPushButton" name="btnSelectLrelease">
@@ -108,91 +118,297 @@
        </item>
       </layout>
      </item>
-     <item row="4" column="0" colspan="2">
-      <widget class="QLabel" name="labelInfo">
-       <property name="text">
-        <string>Percorsi tipici di lrelease:
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QGroupBox" name="groupArgos">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Automatic translation - Argos Translate</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelArgosInfo">
+            <property name="text">
+             <string>
+Argos Translate works locally inside QGIS. No API key and no server are required.
+
+Install Argos with:
+python -m pip install argostranslate
+         </string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QTextEdit" name="txtArgosStatus">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>65</height>
+             </size>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>Argos status...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QPushButton" name="btnCheckArgos">
+              <property name="text">
+               <string>Check Argos</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnInstallArgos">
+              <property name="text">
+               <string>Install language models</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelGuide">
+            <property name="text">
+             <string>
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;
+&lt;b&gt;Mini guida Argos Translate&lt;/b&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+1. Installa Argos:
+&lt;br&gt;
+&lt;code&gt;python -m pip install argostranslate&lt;/code&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+2. Inserisci le lingue, ad esempio &lt;b&gt;it, en&lt;/b&gt;,
+e premi &lt;b&gt;Install language models&lt;/b&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Il download dei modelli richiede Internet,
+ma la traduzione successiva viene eseguita localmente.
+&lt;/p&gt;
+
+&lt;p&gt;
+Documentazione:
+&lt;a href=&quot;https://argos-translate.readthedocs.io/&quot;&gt;
+Argos Translate
+&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+         </string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item>
+          <widget class="QLabel" name="statusLabel">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Pronto</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QProgressBar" name="progressBar">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="value">
+            <number>0</number>
+           </property>
+           <property name="textVisible">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item row="0" column="1">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="labelInfo">
+         <property name="text">
+          <string>
+Typical lrelease paths:
 • Windows: C:\Program Files\QGIS\...\bin\lrelease.exe
 • macOS: /Applications/QGIS.app/Contents/MacOS/bin/lrelease
-• Linux: /usr/bin/lrelease</string>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0" colspan="2">
-      <layout class="QHBoxLayout" name="layoutButtons">
-       <item>
-        <widget class="QPushButton" name="btnGenerateTS">
-         <property name="text">
-          <string>Genera TS</string>
+• Linux: /usr/bin/lrelease
+      </string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="btnOpenLinguist">
-         <property name="text">
-          <string>Linguist</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btnGenerateQM">
-         <property name="text">
-          <string>Genera QM</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btnClear">
-         <property name="text">
-          <string>Cancella</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btnClose">
-         <property name="text">
-          <string>Chiudi</string>
-         </property>
-        </widget>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="4" column="0">
+          <layout class="QHBoxLayout" name="layoutButtons">
+           <item>
+            <widget class="QPushButton" name="btnGenerateTS">
+             <property name="text">
+              <string>Generate TS</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnOpenLinguist">
+             <property name="text">
+              <string>Linguist</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnGenerateQM">
+             <property name="text">
+              <string>Generate QM</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnClear">
+             <property name="text">
+              <string>Clear</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnClose">
+             <property name="text">
+              <string>Close</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="labelLog">
+           <property name="text">
+            <string>Operation log:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QTextEdit" name="txtLog">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>1</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+           <property name="placeholderText">
+            <string>Operation log...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QTextEdit" name="txtPreview">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>2</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+           <property name="placeholderText">
+            <string>Preview strings found...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="labelPreview">
+           <property name="text">
+            <string>Found strings:</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </item>
     </layout>
-   </item>
-   <item>
-    <widget class="QTextEdit" name="txtPreview">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-     <property name="placeholderText">
-      <string>Anteprima stringhe trovate...</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QTextEdit" name="txtLog">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-     <property name="placeholderText">
-      <string>Log operazioni...</string>
-     </property>
-    </widget>
    </item>
   </layout>
  </widget>
