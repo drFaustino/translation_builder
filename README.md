@@ -4,6 +4,9 @@ TranslationBuilder is a QGIS plugin that scans a plugin's Python source code and
 
 It provides a simple, cross-platform workflow for managing translations during QGIS plugin development.
 
+<img width="1032" height="792" alt="img7" src="https://github.com/user-attachments/assets/93a72c08-ca0a-428e-802f-e9ece9cf8339" />
+
+
 ## ✨ Features
 Extracts translatable strings from:
 Python files using QCoreApplication.translate(...)
